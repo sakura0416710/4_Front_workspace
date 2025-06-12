@@ -1,0 +1,10 @@
+.todo{margin: 10px; width: max-content;}
+table, td{border: 1px solid lightgray;}
+table{border-collapse: collapse;}
+tr{height : 40px;}
+th:nth-child(2){width: 200px;}
+th:nth-child(3){width: 100px;}
+th, todo button{background: #946; color:white;}
+td{text-align: center;}
+.todo input{height : 30px; width: 70%;}
+.todo button{height : 40px; width: 80px; border-radius: 10px; border:none;}

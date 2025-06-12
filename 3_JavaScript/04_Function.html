@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>함수</h1>
+    <h2>함수 선언</h2>
+
+    <h3>1. 선언적 함수</h3>
+    <p>함수 명을 작성하여 사용하는 방법 : 이름이 있는 함수. ( 없는 건 var/const/let 변수명=() => {})</p>
+    <button onclick="declare()">실행확인</button>
+    <script>
+        function declare(){
+            alert('선언적 함수 실행');
+        }
+    </script>
+
+
+    <h3>2. 익명 함수</h3>
+    <p>함수 명을 작성하지 않고 변수에 대입하는 방법</p>
+    <button onclick="anonymity1()">실행확인1</button>
+    <button onclick="anonymity2()">실행확인2</button>
+    <script>
+        const anonymity1 = () => {
+            alert('익명함수 실행 : 화살표함수');
+        }
+        var anonymity2 = function(){
+            alert('익명함수 실행 : function');
+        }
+    </script>
+
+    <h2>함수 전달인자와 매개변수</h2>
+    <h3>1. 매개인자로 전달하기</h3>
+    <button id="checkArgument1">실행확인</button>
+    <button id="checkArgument2">실행확인</button>
+    <script>
+        //실행확인 버튼들에 모두 클릭이벤트 걸어보기
+        //앞에 있는 실행확인에는 function이용, 뒤에 있는 실행확인은 화살표함수이용
+
+        //document.get으로 아이디.클래스.태그네임 등으로 접근 후 그 안에 있는 onclick 실행.
+        document.getElementById('checkArgument1').onclick = function(){
+            test1('안녕!');
+            test1('반갑습니다', '어서오세요'); 
+            //'안녕', '반갑습니다' 만 출력함
+            //여긴 두개니까 자바에선 오류임. js에선 앞에꺼 하나만 받아서 출력함.
+            test1(); //undefined
+        }
+
+        function test1(value){
+            console.log(value);     //인자 하나만 가지고 있는데
+            console.log(arguments); //얘는 모든 function함수에 존재하는 배열. 인자를 모두 받아서 출력하는 배열이므로 
+                                    //안녕, 반갑습니다, 어서오세요 를 모두 출력해줌
+                }
+        document.getElementById('checkArgument2').onclick = () => {
+            test2('hello');
+            test2('goodbye','banana','world','rainbow'); //함수의 매개변수가 한 개라 'goodbye'만 출력댐
+            test2(); //undefined
+        }
+        
+        const test2=(value, ...others)=>{
+            console.log(value);
+        //  console.log(arguments); 정의가 돼있지 않다. function 함수명(매개인자);에서만 arguemnt배열을 쓸 수 있다.
+            console.log(others); //goodbye _Function.html:65 (3) ['banana', 'world', 'rainbow']
+                                    
+    
+    }   
+        
+    </script>
+    
+    
+    <h3>매개인자로 스스로를 전달하기</h3>
+    <p>this를 통해 전달 가능,여기서 this는 window객체가 아닌 element자체를 가리킴</p>
+    <button onclick="sendOther('JavaScript')">JavaScript</button>
+    <button onclick="sendOther('JQuery')">JQuery</button>
+    <script>
+        const sendOther = (subject) => {
+            //JavaScript버튼을 누르면 '오늘 베울 내용은 JavaScript입니다' 라는 알림창 출력
+            //Jquery를 누르면 = 라는 알림창 출력
+            alert(`오늘 배울 내용은 ${subject}입니다.`);
+
+            }
+    </script>
+    <button onclick="sendMe(this)">JavaScript</button> 
+    <button onclick="sendMe(this)">JQuery</button>
+    <script>
+        const sendMe = (obj) => {
+         //   console.log(obj); // <button onclick="sendMe(this)">JavaScript</button> 이거 자체가 나옴
+             console.log(obj.innerText); //innerHTML이나 innerText안에 있는 내용을 가져옴
+             /*
+            innerText/innerHTML vs value
+            =>innerText, innerHTML은 사용자에게 값을 받아오지 않는 element
+                 ex. div, button, p, h1...
+            =>value는 사용자에게 값을 받아오는 element. (value라는 속성이 있는 element)
+                ex. input, select, textarea...
+
+             */
+            alert('오늘 배울 내용은 ' + obj.innerText + '입니다.');
+        }
+    </script>
+    <h3>함수의 리턴처리</h3>
+    <button onclick="returnValue();">실행확인</button>
+    <script>
+        // const returnValue=()=>{
+        //     returnFunction();
+        //     console.log(value);
+
+
+
+        // }
+
+        // const returnFunction=()=>{
+        //     return Math.floor(Math.random() * 100) + 1; //0.0~0.99 * 100 + 1
+        //     const value = returnFunction();
+        //     console.log(value);
+        // }
+
+
+
+        //축약방법
+          const returnValue=()=> console.log(returnFunction()); //이건 리턴값이 아님. 실행만 하고 끝나는 console.log
+
+
+        //한줄일 때 생략 가능.만약 함수 뒤에 리턴값이 있다면 {}와 return생략 가능. 알아서 리턴값으로 들어가기 때문이다.
+        const returnFunction=()=> Math.floor(Math.random() * 100) + 1; //0.0~0.99 * 100 + 1
+  
+    </script>
+    <h2>내장함수</h2>
+    <h3>eval()</h3>
+    <p>문자열을 자바스크립트 코드로 변환해 실행</p>
+    계산식 : <input type="text" id="text1"><button onclick="evalTest();">실행확인</button>
+    <script>
+        const evalTest = () => {
+            //input에 입력한 데이터를 console에 찍기
+           const value= document.getElementById('text1').value;
+            console.log(value); //사용자에게 받은 값이 나옴
+            console.log(eval(value));
+        }
+    </script>
+    <h3>infinity와 NaN</h3>
+    <p>
+        대부분의 프로그래밍 언어는 0으로 숫자를 나누면 자동으로 오류가 발생하면서 프로그램이 종료되지만, <br/>
+        자바스크립트는 0으로 숫자를 나누면 infinity라는 값이 나오게 됨<br/>
+        자바스크립트가 표현할 수 없는 숫자는 Nan(Not a Number)로 표시
+
+    </p>
+    <button onclick="aboutNumFunc();">실행확인</button>
+    <script>
+        const aboutNumFunc = () => {
+            const num1 = 10/0;
+            const num2 = 10 / 'a';
+            console.log(num1, typeof num1); //Infinity 'number'
+            console.log(num2, typeof num2); //NaN 'number'
+
+            console.log(num1 == Infinity); //true
+            console.log(isFinite(num1));  //유한하니? false.
+            console.log(isNaN(num2));     //true
+
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

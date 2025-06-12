@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>이미지 관련 태그</h1> <!--인라인 블록-->
+    <img src = "sample/image/river1.PNG"/>
+
+    <h2>자주 사용하는 속성들</h2>
+    <h3>alt속성 </h3>
+    <p>
+        화면 낭독기는 이미지를 읽을 수 없기 때문에 대체되는 텍스트가 필요하게 됨->alt 이용 <br>
+        혹은 사진의 경로가잘못 되었거나 이미지를 제대로 표현할 수 없는 경우로도 사용
+    </p>
+    <img src="sample/image/c.PNG" alt="도시사진"/>
+
+    <h3>이미지의 크기를 조정하는 width, height속성</h3>
+    <h3>고정 크기 단위 : 화면 사이즈가 바뀌어도 크기는 불변</h3>
+   
+    <image src="sample/image/flower1.PNG" width="200px" height="150px"/>
+    <image src="sample/image/flower2.PNG" width="200px" height="150px"/>    
+    <image src="sample/image/flower3.PNG" width="200px" height="150px"/>
+    <image src="sample/image/flower4.PNG" width="200px" height="150px"/>
+    <image src="sample/image/flower5.PNG" width="200px" height="150px"/>
+
+    <br> 
+    <h3>가변 크기 단위 : 화면 사이즈 혹은 기준 사이즈에 따라 크기가 변경된다.</h3>
+    <image src="sample/image/flower1.PNG" width="15%" height="150px"/>
+    <image src="sample/image/flower2.PNG" width="15%" height="150px"/>    
+    <image src="sample/image/flower3.PNG" width="15%" height="150px"/>
+    <image src="sample/image/flower4.PNG" width="15%" height="150px"/>
+    <image src="sample/image/flower5.PNG" width="15%" height="150px"/>
+
+
+    <h1>오디오 관련 태그</h1>
+    <audio src="sample/audio/song.mp3"></audio> <!--src로 위치 찾아주면서 가져오기.근데 이렇게만 하면 안보임-->
+    <audio src="sample/audio/song.mp3" controls></audio> <!--그럼 창 생기고 노래가 나오게 됨!-->
+    <audio src="sample/audio/song.mp3" controls autoplay></audio>   <!--자동재생되지 않음. 인터넷익스플로러빼고는 자동ㅅ재생을 막아뒀기 때문-->
+    <audio src="sample/audio.song.mp3" controls loop></audio> <!--반복 재생-->
+
+    <h1>비디오 관련 태그</h1>
+    <video src="sample/video/bear.mp4" crotrols></video> <!--재생/정지 버튼이 필요하므로 controls필요-->
+    <video src="sample/video/bear.mp4" crotrols preload="auto"></video> <!--자동 다운-->
+    <video src="sample/video/bear.mp4" crotrols preload="metadata"></video> <!--필요한 때 다운-->
+    <video src="sample/video/bear.mp4" crotrols preload="none"></video> <!--썸네일도 안보이게 됨-->
+    
+
+
+
+
+</body>
+</html>

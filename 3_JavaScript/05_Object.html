@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>객체</h1>
+    <h2>객체 선언 및 호출</h2>
+    <p>
+        중괄호{}를 사용하여 객체를 생성하고 속성에는 모든 자료형이 올 수 있음<br/>
+        객체를 키 값을 사용하여 속성 식별
+    </p>
+    <button onclick="basic();">실행확인</button>
+    <script>
+        const basic=()=>{
+            // Key : Value , 이런 식으로 map처럼 씀
+            const product = {
+                pName : 'Dry Mango',
+                type:'pickle',
+                ingredient : ['sugar' , 'mango'],
+                origin : 'philippines',
+                pName : 'mango jam'   // key중복 되면 덮어씌어짐
+            };
+            console.log(product);
+
+            //객체명['속성명']
+            console.log(product['pName']);
+            console.log(product['type']);
+            console.log(product['ingredient']);
+            //------------------------------
+            console.log(product['ingredient'][0]); //배열이 아니라 요소 뽑기
+            console.log(product['ingredient'][1]); //배열이 아니라 요소 뽑기
+            console.log(product['origin']);
+
+
+            //객체명.속성명
+            console.log(product.pName);
+            console.log(product.type);
+            console.log(product.ingredient);
+            console.log(product.ingredient[0]); //배열이 아니라 요소 뽑기
+            console.log(product.ingredient[1]); //배열이 아니라 요소 뽑기
+            console.log(product.origin);
+            
+
+
+            //product = '양말';
+            product.origin = 'korea';
+
+        }
+    </script>
+    <h3>객체의 키 식별자 테스트</h3>
+    <p>
+        객체의 키는 모든 문자열 사용 가능 <br/>
+        단, 식별자로 사용할 수 없는 단어를 키로 사용한 경우 무조건 대괄호를 사용해야 객체의 요소에 접근 가능
+    </p>
+    <button onclick="keyTest();">실행확인</button>
+    <script>
+        const keyTest = () =>{
+            const objTest = {
+                sum$mer : '여름방학',
+                sum_mer : '아이스크림',
+               'sum mer': '바다'
+            };
+            console.log(objTest);
+            console.log(objTest.sum$mer);
+            console.log(objTest.sum_mer);
+          //  console.log(objTest.sum mer);
+            console.log(objTest['sum mer']);
+        }
+    </script>
+
+    <h2>객체 속성 추가 및 제거</h2>
+    <button onclick="addObjArg()">실행확인</button>
+    <script>
+        const addObjArg = () => {
+            const student = {} ; //const student= new Object();
+            console.log(student);
+
+            student.name = '강건강';
+            student['hobby'] = '운동';
+            student.strength = '팔씨름';
+            student['dream']  = '운동선수';
+            console.log(student);
+
+            //제거 delete
+            delete(student.strength);
+            console.log(student);
+        }
+    </script>
+    <h2>객체배열</h2>
+    <button onclick="objArr();">실행확인</button>
+    <script>
+        const objArr = () => {
+            const student0 = {name : '창천춘', java : 90, oracle : 56, html : 90, css3 : 33, js :10 };
+            const student1 = {name : '강건강', java : 11, oracle : 12, html : 13, css3 : 14, js :15 };
+            const student2 = {name : '송성실', java : 20, oracle : 19, html : 18, css3 : 17, js :16 };
+            const student3 = {name : '류라라', java : 33, oracle : 45, html : 12, css3 : 33, js :25 };
+            const student4 = {name : '남나눔', java : 83, oracle : 83, html : 38, css3 : 67, js :87 };
+            const student5 = {name : '윤혜의', java : 36, oracle : 38, html : 74, css3 : 32, js :12 };
+            const student6 = {name : '정재주', java : 74, oracle : 76, html : 90, css3 : 33, js :11 };
+            const student7 = {name : '문미미', java : 76, oracle : 90, html : 90, css3 : 33, js :66 };
+            const student8 = {name : '도대남', java : 26, oracle : 56, html : 11, css3 : 39, js :99 };
+            const student9 = {name : '박보배', java : 45, oracle : 76, html : 38, css3 : 42, js :45 };
+            
+            const students = [];
+           
+             students.push(student0);
+             students.push(student1);
+             students.push(student2);
+             students.push(student3);
+             students.push(student4);
+             students.push(student5);
+             students.push(student6);
+             students.push(student7);
+             students.push(student8);
+             students.push(student9);
+            
+             console.log(students);
+
+             for(const obj of students){
+                console.log(obj); //for of로 배열 돌리면 obj안에는 배열 안 값이 출력된다. 
+                obj.getSum = function(){ //obj안에서 getSum이 메소드 역할을 하는 것.
+                    let sum = 0;
+                    for(const key in this){ //for in 문 : key를 나타냄.
+                        if(key!='name' && key != 'getSum' && key != 'getAvg'){
+                            sum += obj[key];
+                        }
+                    
+                    }
+                    return sum;
+
+                }
+
+                //함수도 객체 안에 넣을 수가 있다.
+                obj.getAvg = function(){
+                    return this.getSum()/5;
+                }
+
+                console.log(`이름 : ${obj.name}, 총점 : ${obj.getSum()}), 평균 : ${obj.getAvg()}`);
+             }
+             
+             
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

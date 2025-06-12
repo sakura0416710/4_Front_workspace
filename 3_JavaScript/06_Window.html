@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        .area{border : 1px solid black; width:300px; height: 100px; font-size: 40px; color: red;}
+    </style>
+</head>
+
+
+
+<body>
+    <h1>window 객체</h1>
+    <p>
+        window객체는 자바스크립트의 최상위 객체이며 BOM과 DOM으로 나뉨 <br/>
+        BOM(Browser Object Model) : location 객체, navigation객체, history객체, screen객체 <br/>
+        DOM(Document Object Model) : document객체
+    </p>
+    
+    <h2>window 객체</h2>
+    <button id="test1">실행1</button>
+    <button id="test2">실행2</button>
+    <script>
+        document.getElementById('test1').onclick = () => {
+            console.log(window);
+            console.log(this); //화살표함수에서 this를 쓰면 윈도우 객체가 나옴
+
+            window.open('http://www.naver.com', '', 'width=500, height=300'); //새 탭을 여는 메소드. ()에 링크 쓰면 그게 열림.ㄴ
+            //              주소             해당url부를 이름       옵션
+            //크기조절해서 팝업창 만들기 가능
+
+        }
+            
+        
+        document.getElementById('test2').onclick = function(){
+            console.log(window);
+            console.log(this); //function함수에서 this : this가 들어간 객체를 가리킴<button id~>어쩌구 이게 나옴
+
+            const popup = window.open('', '', 'width=500, height=500');
+            popup.document.write('<html><body><h2>나 팝업이야!</h2></bodt></html>');
+        }
+        
+
+    </script>
+
+    <h3>window 객체의 timer 메소드</h3>
+    <h4>setTimeout()</h4>
+    <button onclick="setTimeoutTest();">실행확인</button>
+    <script>
+        const setTimeoutTest = () => {
+            const myWindow = window.open('','','width=500, height=300');
+            myWindow.alert('3초 후에 이 페이지는 종료됩니다.');
+            
+
+             //함수 안에 다시 함수를호출하기. Window.setTimeout(실행시킬 내용, 숫자(밀리세컨));
+             //alert누르면 3초 뒤에 페이지 사라짐
+    //        window.setTimeout( ()=>{           
+    //            myWindow.close();}
+    //            , 3000);
+
+            window.setTimeout( ()=> myWindow.close(), 3000);    //내용이 한 줄이므로 축약가능 ( {} 삭제, return삭제, ; 삭제) 
+
+
+
+        }
+    </script>
+    <h4>setInterval()</h4>
+    <button onclick="setIntervalTest();">실행확인</button>
+    <div id="intervalDiv" class="area"></div>
+    <script>
+        const setIntervalTest = () => {
+            const area= document.getElementById('intervalDiv');
+            
+         //   window.setInterval(실행내용, 숫자(밀리세컨));
+         //   두번째 인자(숫자)를 생략하거나 혹은 10미만의 값을 입력하면 자동으로 10밀리세컨이 적용됨 (0.01초)
+         //   함수를 하나 더 만들어주고 반복하고 싶은 것을 함수 안에 넣기
+            window.setInterval( () => {
+                const date = new Date();
+                area.innerHTML = date.getHours() + "  :  " + date.getMinutes() + " : " + date.getSeconds(); 
+            }, 1000);
+         
+        }
+
+
+    </script>
+
+    <h4>clearInterval()</h4>
+    <h5>종료시키기</h5>
+    <button onclick="count3();">실행확인</button>
+    <div id="countDiv" class="area"></div>
+    <script>
+        const count3 = () => {
+            //countdown 3초가 지나면 '종료!'라는 글자 띄우기
+            //  countdown : 3
+            //  countdown : 2
+            //  countdown : 1 종료!
+            const area = document.getElementById('countDiv');
+            let count = 3;
+            const interval3 = window.setInterval( ()=> {
+                area.innerHTML = 'countdown : ' + count--;
+                if(count < 0){
+                    area.innerHTML += '종료!'; // += 하면 -까지 보였음. =종료 라고 하면댐
+                    clearInterval(interval3);
+                }
+                
+            }, 1000);
+
+        }
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,13 @@
+.container{width : 500px;}
+.input-title{width : 300px; margin-bottom: 10px;}
+.input-middle{width : 300px; vertical-align: middle; margin-bottom: 10px;}
+.button-wrapper{ margin-top:10px; margin-left:130px; width:70px;}
+
+table, th, td { border: 1.3px solid gray}
+     table {margin: 0 auto; border-width :2px; border-color :rgb(163, 158, 158);}
+     
+     thead{text-align: center; background-color: #ff946a; color: white;}
+     tbody{background-color: #f8edca; }
+     tfoot{ text-align: center;background-color: #ff946a; color: white;}
+
+    .button{width: 70px;}

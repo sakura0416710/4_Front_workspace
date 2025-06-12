@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link type="text/css" rel="stylesheet" href="과제/UI.css">
+    
+</head>
+
+
+<body>
+    <form action="insert.no" method="post">
+        <fieldset>
+            <legend>공지사항 작성하기</legend>
+            <div class="container">
+                <label><b>제목 </b></label><input type="text" class="input-title"  name="title" placeholder="제목을 입력하시오." required></br>
+                <label><b>내용</b></label>
+                <textarea class="input-middle" rows="10" cols="40" name="content" placeholder="내용을 입력하시오." style="resize : none;"></textarea></br>
+                <label><b>첨부파일</b></label><input type="file" name="uploadFile">
+                </br>
+                <input type="submit" value="작성하기"  class="button-wrapper"/>
+            </div>
+        </fieldset>  
+    </form>
+
+<br><hr><br>
+
+<table width="1400">
+    <thead>
+    <tr>
+        <th width="30" height="40">번호</th>
+        <th width="600" colspan="2">제목</th>
+        <th width="200">작성자</th>
+        <th width="200">작성일</th>
+        <th width="60">조회수</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr>
+        <td>9</td>
+        <td>공지사항 제목9</td>
+        <td width="70"><input type="submit" name="click"value="바로가기"class="button"/></td>
+        <td>user01</td>
+        <td>2021-03-29</td>
+        <td>34</td>
+    </tr>
+    <tr>
+        <td>6</td>
+        <td>공지사항 제목6</td>
+        <td><input type="submit" name="click"value="바로가기" class="button"/></td>
+        <td>answ445</td>
+        <td>2021-03-12</td>
+        <td>67</td>
+    </tr>
+       <tr>
+        <td>3</td>
+        <td>공지사항 제목3</td>
+        <td><input type="submit" name="click"value="바로가기"class="button"/></td>
+        <td>testg12</td>
+        <td>2021-03-01</td>
+        <td>98</td>
+    </tr>
+      <tr>
+        <td>2</td>
+        <td>공지사항 제목2</td>
+        <td><input type="submit" name="click"value="바로가기"class="button"/></td>
+        <td>palwe3</td>
+        <td>2021-01-02</td>
+        <td>85</td>
+    </tr>
+      <tr>
+        <td>1</td>
+        <td>공지사항 제목1</td>
+        <td><input type="submit" name="click"value="바로가기"class="button"/></td>
+        <td>xm123</td>
+        <td>2020-12-24</td>
+        <td>124</td>
+    </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="4">전체공지사항 갯수</th>
+        <th colspan="2">5개</th>
+    </tr>
+    </tfoot>
+
+
+</table>
+
+
+
+
+</body>
+</html>

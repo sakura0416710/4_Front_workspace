@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link type="text/css" rel="stylesheet" href="C:\코딩 연습\4_HTML_workspace\1_HTML\UI구현 과제\UI포트폴리오.css">
+
+</head>
+
+
+<body>
+    
+<div class="content" style="display: flex; justify-content: space-between; width: 500px">
+    <div class="page left">
+    <label class="input-label">너비 :   </label><input type="number" id="width" value="200" style="width:100px" required/> px <br>
+    <label class="input-label">글자크기 :   </label><input type="number" id="fontSize" value="20" style="width:100px" required/>px <br>
+    <label class="input-label">글자색:   </label><input type="text" id="fontColor" value="red"required/> <br>
+  </div>
+  <div class="page right">
+    <label class="input-label">높이:   </label><input type="number" id="height" value="400" required/> px <br>
+    <label class="input-label">굵기:   </label><input type="radio" id="weight" name="weight" value="normal" />보통 
+                                               <input type="radio" id="weight" name="weight" value="thick" checked /> 굵게 <br>
+    <label class="input-label">배경색 : </label><input type="text" id="background" value="yellow"required/> <br>
+  </div>
+</div>
+
+<div class="content2" style="display : flex; margin-left: 300px;">
+    <label class="input-label">가로정렬 :</label> 왼쪽<input type="radio" id="hAlign" name="hAlign" value="left" /> 
+                                                 가운데<input type="radio" id="hAlign" name="hAlign" value="center" /> 
+                                                 오른쪽<input type="radio" id="hAlign" name="hAlign" value="right"checked />
+</div>
+ <div class="content3" style="display : flex; margin-left: 300px;">                               
+    <label class="input-label">세로정렬 : </label> 위<input type="radio" id="vAlign" name="vAlign" value="top" /> 
+                                                 가운데<input type="radio" id="vAlign" name="vAlign" value="center" checked/> 
+                                                 아래<input type="radio" id="vAlign" name="vAlign" value="bottom" /> 
+
+
+</div> 
+<div class="content4" style="display : flex; margin-left: 300px;"> 
+    <label class="input-label">출력 문자열 : </label><input type="text" id="string" value="Hello World!" style="width:400px"/><br>
+</div> 
+
+ <button id="apply">적용하기</button>
+<script>
+    document.getElementById("apply").addEventListener("click", function() {
+    const width = document.getElementById("width").value;
+    const height = document.getElementById("height").value;
+    console.log(`너비: ${width}px, 높이: ${height}px`);
+  });
+
+
+</script>
+
+    
+    
+
+
+
+
+</body>
+</html>

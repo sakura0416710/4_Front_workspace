@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>폼 태그관련</h1>
+    <p>
+        form태그는 html에서 사용자가 입력한 값들을 서버로 넘기는 역할을 한다.<br/>
+     *action 속성 : 폼에 입력된 값들을 전송받을 서버 명 입력 <br/>
+     *method 속성 : get/post방식으로 전송방식 지정가능 (url에 정보를 보여줄지 말지 결정)(get방식이 defaut=url에 데이터가 노출되는 것)
+    </p>
+
+    <form action="3_표관련.html" method="post">
+        <label>검색할 내용 : </label>
+        <input type="text" size="28" name="search" placeholder="검색어를 입력해주세요"/>
+        <input type="submit" value="검색"/>
+    </form>
+
+    <hr/>
+
+    <form>
+        <fieldset>
+            <legend>필수 입력 항목 </legend>
+          <label>이름 : </label><input type="text"/><br/>
+          <label>아이디 : </label><input type="text"><br/>
+          <label>비밀번호 : </label><input type="text"><br/>
+        </fieldset>
+        <fieldset>
+        <legend>선택 입력 항목</legend>
+        <label>취미 : </label><input type="text"><br/>
+        <label>혈액형 : </label><input type="text"><br/>
+        <label>별자리: </label><input type="text">
+        </fieldset>
+
+    </form>
+
+    <hr/>
+    <h2>text와 관련된 input태그의속성값들</h2>
+    <form>
+        <h3>type="hidden"</h3>
+        <input type="hidden" name="hd" value="hidden에 데이터 담기"/> <!--사용자 눈엔 필요없지만 로직 부분에서 필요할 때 쓰기도 함-->
+
+        <h3>type="text"</h3>
+        <label>아이디 : </label>    <!--입력칸 한 줄이 생김-->
+        <input type="text" size="30" placeholder="아이디 입력" maxlength="15" autofocus="아이디" name="userId" value="user01" /><br/> <!--길이가 길어짐!-->
+        <!--name="userId"라고 정한 후 아이디 입력해서 넘기면 url에 userId=입력값으로 뜸-->
+        <!--autofocus 처음부터 어디에 커서가 있을지 정할 수 있음-->
+        <!--autofocus required : 작성해야 전송이 될 수 있게,필수칸으로 만들 때 씀-->
+        <!--value="값"처음부터 입력창에 value에 입력한 값이 올라와있음 -->
+        <input type="submit" value="전송"/> <!--'전송'이라는 이름의 제출칸이 생성됨-->
+    
+        <h3>type="password"</h3>
+        <label>비밀번호 : </label>
+        <input type="password" name="userPwd" placeholder="비밀번호 입력하세요"/>
+        <br/>
+
+        <input type="submit" value="전송"/>
+
+
+        <h3>type="button", type="submit", type="reset"</h3>
+        <input type="button" value="버튼"/>
+        <input type="submit" value="전송"/> <!--value로 버튼 이름 지어줄 수 있음. 안쓰면 제출이라고 나옴-->
+        <input type="reset" value = "취소"/> <!--입력한 값들을 초기화 시켜줌-->
+        <br/>
+
+        <p>button태그를 이용해서 버튼을 만들 수 있다.</p>
+        <button>button </button> <!--button태그가 form태그 안에 있다면 기본적으로 submit의 역할을 함-->
+        <button type = "button">일반 버튼</button>
+        
+
+
+        <h2>라디오 버튼과 체크박스</h2>
+        <form>
+            <h3>type="radio"</h3>
+            <label>성별 : </label>
+            <input type="radio" id="male" name="gender" value="m" checked>
+            <label for="male"> 남자</label> <!--전송할 때 url에 m,f가 넘어간다고 뜸-->
+
+            <input type="radio" id="female"name="gender" value="f">
+            <label for="female">여자</label>
+            <br/>
+            <input type="submit" value="전송"/>
+    
+            <br/> 
+            <h3>type="checkbox"</h3>
+            <label>취미 : </label>
+            <input type="checkbox" id="baseball" name="hobby" value="baseball"><label for="baseball">야구</label>
+            <input type="checkbox" id="basketball" name="hobby" value="baseketball"><label for="baseketball">농구</label>
+            <input type="checkbox" id="soccer" name="hobby" value="soccer"><label for="soccer">축구</label>
+            <input type="submit" value="전송"/> 
+        
+            <br/>
+            <h2>File</h2>
+            <form>
+                <h3>type="file"</h3>
+                <label>파일 선택 :</label>
+                <input type="file" name="uploadFile" multiple accept=".txt, jpg,xslx">>
+                <br/>
+                <input type="submit" value="전송"/>
+
+
+
+            </form>
+            <h2>HTML5 태그</h2>
+            <form>
+                <h3>type="search", type="url",type="email", type="tel"</h3>
+                <label>검색 : </label>
+                <input type="search" name="searchText" placeholder="검색어를 입력하세요"/><br/>
+
+                <br/>
+
+                <label>홈페이지 : </label> <!--http가 꼭 붙어야하므로 value로 미리 적어주기-->
+                <input type="url" name="homepage" value="http://"/>
+
+                <br/>
+
+                <label>이메일 : </label>
+                <input type="email" name="email" placeholder="이메일을 입력하세요"/>
+
+                <br/>
+
+                <label>전화번호 : </label>
+                <input type="tel" name="phone" placeholder="전화번호를 입력하세요"/>
+
+                <br/><br/>
+                <input type="submit" value="전송"/>
+
+
+
+            </form>
+        
+            <h2>숫자와 관련된 input태그 속성들</h2>
+            <form>
+                <h3>type="number"</h3>
+                <label>수량 : </label>
+                <input type="number" name="amount" min="0" max="100" step="5"/> <!--단위step으로 설정(5단위값)-->
+
+                <h3>type="range"</h3>
+                <label>점수  : </label>
+                <input type="range" name="point" min="-50" max="50" step="30"/> <!--범위 지정 가능-->
+                <input type="submit" value="전송"/>
+
+            </form>
+            <hr/>
+            <h2>날짜와 관련된 input태그 속성들</h2>
+            <form>
+                <h3>type="date"</h3>
+                <label>날짜 : </label>
+                <input type="date" name="date"/> <br/>
+
+                <h3>type="time"</h3>
+                <label>시간 : </label>
+                <input type="time" name="time"/>
+
+                <h3>type="datetime-local"</h3>
+                <label>날짜와 시간 : </label>
+                <input type="datetime-local" name="dateTime"/>
+
+                <h3>type="month"</h3>
+                <label>월 : </label>
+                <input type="month" name="month"/>
+
+                <h3>type="week"</h3>
+                <label>주 : </label>
+                <input type="week" name="week"/>
+
+                <br/><br/>
+                <input type="submit" value="전송"/>
+        
+        
+        
+        </form>
+        <h2>select태그와 option태그</h2>
+        <form>
+            <h3>기본 select태그와 option태그</h3>
+            <label>국적 : </label>
+            <select name="nation1"> <!--파라미터가 있어야 넘어감-->
+                <option value="ko">한국</option>
+                <option  value="ch">중국</option>
+                <option  value="jp" selected>일본</option> <!--이게 첨에 뜨도록 함 순서는 변동x-->
+                <option  value="usa">미국</option>
+                <option  value="etc">기타</option>
+            </select>
+
+            <h3>select태그의 속성</h3>
+            <select name="nation1" size="3" multiple> <!--처음에 3개씩 보이면서 고를 수 있고 멀티선택도 가능-->
+                <option value="eng">영국</option>
+                <option value="fr">프랑스</option>      
+                <option value="ital">이탈리아</option>
+                <option value="ger">독일</option>
+                <option value="sp">스페인</option>
+                <option value="rus">러시아</option>
+                <option value="fin">핀란드</option>
+                <option value="etc">기타</option>
+            </select>
+
+            <br>
+            <input type="submit" value="전송"/>
+            
+        </form>
+        <h2>datalist</h2>
+        <form>
+            <label>과목 :</label>
+            <input type="text" name="subject" list="subjectList" placeholder="과목을 입력하세요"/>
+            <datalist id="subjectList">
+                <option value="java">자바</option>
+                <option value="db">데이터베이스</option>
+                <option value="html">HTML</option>
+
+
+        </datalist>
+        <button>전송</button>   <!--form 안에서 기본적으로 전송 역할-->
+    </form>
+    <hr/>
+
+    <h2>textarea</h2>
+    <form>
+        <textarea cols="50" name="content" placeholder="내용을 입력하세요" style="resize : none;">자기소개 500자</textarea> <!--열을 뜻하므로 가로로 길어짐. 세로는 rows 이용-->
+        <br/><br/>
+        <!--styl="resize : none;"을 넣으면 사이즈 변형하는 칸이없어짐-->
+        <!--textarea의 value지정은 <textarea> value넣고 싶은 거 </textarea> 이렇게 넣음. 공백도 포함돼서 나옴 -->
+        <input type="submit" value="전송"/>
+
+    </form>
+
+    </form>
+
+
+</body>
+</html>
+

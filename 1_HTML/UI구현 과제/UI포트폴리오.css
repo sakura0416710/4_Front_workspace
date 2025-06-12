@@ -1,0 +1,32 @@
+.content {
+    overflow: hidden;
+    margin-top:10px; margin-left:300px; width:70px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.input-label{
+      width: 100px;
+  }
+.page {
+    display: inline-block;
+    width: 50%;
+    vertical-align: top;
+}
+#width{margin-left : 10px; margin-bottom: 10px; }
+#fontSize{margin-left : 10px; margin-bottom: 10px; }
+#fontColor{margin-left : 10px; margin-bottom: 10px; }
+#height{margin-left : 10px; margin-bottom: 10px; }
+#weight{margin-left : 10px; margin-bottom: 10px; }
+#background{margin-left : 10px; margin-bottom: 10px; }
+#hAlign{margin-left : 10px;}
+.content2{
+    margin-top:30px; margin-left:300px; 
+}
+.content3{
+    margin-top:30px; margin-left:300px;
+}
+.content4{
+    margin-top:30px; margin-left:300px;
+}
+#apply{align-items: center; margin-top:10px; margin-left:44%; width:70px;}

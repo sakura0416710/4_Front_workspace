@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>이벤트</h1>
+    <h2>이벤트 설정 방법</h2>
+    <h3>고전이벤트 모델</h3>
+    <button id = "classic1">clasic1 실행확인</button>
+    <button id = "classic2">clasic2 실행확인</button>
+    <button id = "classic3">clasic3 실행확인</button>
+    <script>
+        const classic1 = document.getElementById('classic1');
+        classic1.onclick = () => {
+            console.log('classic1을 클릭했습니다.');
+        }
+
+
+        const classic2 = document.getElementById('classic2');
+        classic2.onclick = () => {
+            console.log('classic2가 클릭되면서 classic1 이벤트를 제거하였습니다.');
+            classic1.onclick = null; //제거하는 방법
+        }
+
+
+        const classic3 = document.getElementById('classic3');
+        const classic3Func = () => {
+            alert('이름 있는 함수 직접 생성');
+        }
+
+        classic3.onclick= classic3Func;
+        classic3.onmouseover = () => {
+            console.log('마우스 이벤트 (올라갔을 때)');
+        }
+        classic3.onclick=()=>{
+            console.log('한 이벤트에 여러 함수 연결 불가능'); //다른 이벤트(클릭)을 넣으면 덮어씌워져서 알럿은 나오지 않게 됨
+        }
+    </script>
+
+
+
+
+
+    <h3>인라인 모델</h3>
+    <button onclick="inline();">inline실행확인</button>
+    <button onclick ="alert('태그에 이벤트 코드를 직접 넣어 실행')">inline실행하기</button>
+    <script>
+        const inline= () => {
+            alert('태그에 이벤트와 함수를 직접 넣어 실행');
+        }
+    </script>
+
+    <h3>표준 이벤트 모델</h3>
+    <button id="standard1">standard1 실행확인</button>
+    <button id="standard2">standard2 실행확인</button>
+    <script>
+        const standard1 = document.getElementById('standard1');
+        const standard2 = document.getElementById('standard2');
+
+        //연결요소.addEventListener(이벤트, 함수)
+        standard1.addEventListener('click', () => {
+            alert('standard1을 클릭했습니다.');
+        });
+
+        const fn_in = () => {
+            console.log('standard1에 들어왔습니다.');
+        }
+        standard1.addEventListener('mouseover', fn_in);
+
+
+        const fn_many = () => {
+            console.log('짜잔 : 한 이벤트에 여러 개를 넣을 수 잇습니다.');
+        }
+        standard1.addEventListener('click', fn_many);
+
+        standard2.addEventListener('dblclick',()=>{ //더블클릭하면
+            standard1.removeEventListener('click',fn_many);     //이 함수 발동, 이벤트 제거
+            console.log('standard2를 더블클릭하면서 standard1의 이벤트 제거');
+        });
+    </script>
+
+    <h2>기본 이벤트 제거</h2>
+   <!--방법 1 : <form>-->
+    <!--submit막기 방법2-->
+    <form onsubmit="return delEvent1();">
+        <label>이름 : </label><input type="text" name="name" id="name"/><br/>
+        <label>아이디 : </label><input type="text" name="userId" id="userId"/><br/>
+        <label>비밀번호 : </label><input type="password" name="password" id="password"/><br/>
+        <label>비밀번호 확인: </label><input type="password" name="passwordComfirm" id="passwordConfirm"/><br/>
+        <!--submit막기 방법 1 : <input type="submit" value="제출" onclick="return delEvent1();"/> -->
+        <input type="submit" value="제출"/>
+    </form>
+    <script>
+        //click -> submit이 일어나는데 나는 비번 일치 안하면 submit을 안 시키고 싶음.
+        //return을 써줌으로써 true일때만click -> submit이 되도록 함
+        
+        const delEvent1= () => {
+            const password = document.getElementById('password').value;
+            const password2 = document.getElementById('passwordConfirm').value;
+
+            if(password == password2){
+                alert('비밀번호가 일치함');
+                return true;
+            } else {
+                alert('비밀번호가 안 일치함');
+                return false;
+            }
+
+
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

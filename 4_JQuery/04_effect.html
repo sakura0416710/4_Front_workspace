@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        .menu{
+            background : yellowgreen; width:300px; height:30px;
+            border : 1px solid green; border-radius: 10px;
+            text-align: center; cursor: pointer;
+        }
+        .contents{
+            border: 1px solid lightgray; width:300px; height:200px; display:none;
+        }
+    </style>
+</head>
+<body>
+    <h1>효과</h1>
+    <h2>show() 와 hide()</h2>
+    <button id="show">보이기</button>
+    <button id="hide">숨기기</button>
+    <button id="toggle">토글이</button>
+    <br/>
+    <img id="river" src="4_jQuery\image\river1.PNG"/>
+    <script>
+        $ ( () => {
+            $('#show').click( () => {
+                $('#river').show(600);
+            //$('#river').css('display','inline');
+
+            });
+            
+            $('#hide').click( () => {
+                $('#river').hide(5000); //밀리세컨기준이라 5초 동안 천천히 사라지게 됨
+             //   $('#river').css('display','none');
+            
+            });
+
+            $('#toggle').click(() => {
+                $('#river').toggle(2000); //알아서 버튼 누를 때마다show, hide반복함(똑딱이)
+            });                           // 2초에 걸쳐 천천히 나타낫, 사라짐 반복
+
+        });
+    </script>
+    <h2>slideDown()과 slideUp()</h2>
+    <div class="menu">첫 번째 메뉴</div>
+    <p class="contents">내용1</p>
+    <div class="menu">두 번째 메뉴</div>
+    <p class="contents">내용2</p>
+    <div class="menu">세 번째 메뉴</div>
+    <p class="contents">내용3</p>
+    <div class="menu">네 번째 메뉴</div>
+    <p class="contents">내용4</p>
+    <div class="menu">다섯 번째 메뉴</div>
+    <p class="contents">내용5</p>
+    <script>
+        $( () => {
+            $('.menu').click(function () {
+              const display =  $(this).next().css('display');              //클릭한 메뉴의 '다음'요소인 내용을 원하므로 next
+                // if(display =='none'){
+                //     $(this).next().slideDown(2000);
+                // } else {
+                //     $(this).next().slideUp(2000);
+                // }
+                $(this).next().slideToggle();
+            });
+
+        });
+    </script>
+    <h2>fadeIn()과 fadeOut()</h2>
+    <button id="fadeIn">fadeIn</button>
+    <button id="fadeOut">fadeOut</button>
+    <button id="fadeToggle">fadeToggle</button>
+    <br/>
+    <img id="flower"src="../image/flower1.PNG"/>
+    <script>
+        $( ()=> {
+            $('#fadeIn').click( () => {
+                $('#flower').fadeIn();
+            });
+            $('#fadeOut').click( () => {
+                $('#flower').fadeOut();
+            });
+            $('#fadeToggle').click( () => {
+                $('#flower').fadeToggle();
+            });
+            //hover : 마우스 올라갓다 내려갓다 하는 변화
+
+            $('#flower').hover(function () {
+                console.log('mouseenter')    //마우스 올라갔을때
+                $(this).fadeTo(700, 0.4);   //어디까지 투명도를 가질지 정하는 것.1에 가까울수록 진해짐
+
+            }, function(){
+                console.log('mouseleave')   //마우스 나갔을 때    
+                $(this).fadeTo(700,1);
+            });
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

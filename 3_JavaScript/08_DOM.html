@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .area{border : 1px solid black; min-height:100px;}
+        table{text-align : cener;}
+        th{border :1px solid black; width: 100px;}
+
+    
+    </style>
+</head>
+
+
+
+<body>
+    <h1>DOM(Document Object Model)</h1>
+    <h2>Node객체</h2>
+    <h3>텍스트 노드가 있는 노드</h3>
+    <button onclick="textNode();">실행확인</button>
+    <div id="textNodeDiv" class="area"></div>
+    <script>
+        const textNode = () => {
+            //textNode순서있음
+            //element 생성 > 텍스트노드 생성 >(원한다면) 속성설정 > 노드 연결
+            const title = document.createElement('h3'); //<h3></h3>이렇게 만들어진것임
+
+            const textNode = document.createTextNode('안녕'); //"안녕"
+
+            title.appendChild(textNode); //<h3>안녕</h3>  이렇게 됨
+            document.getElementById('textNodeDiv').appendChild(title);
+
+            title.srtle.color = 'green'; //속성 설정
+
+        }
+    </script>
+
+
+    <h3>텍스트 노드가 없는 노드</h3>
+    <button onclick="noTextNode();">실행확인</button>
+    <div id = "noTextNodeDiv" class="area"></div>
+
+    <script>
+        const noTextNode = () => {
+            //Element생성
+            const img = document.createElement('img'); //<img>
+            //속성지정
+            img.src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDAyMTVfOTkg%2FMDAxNzA3OTgxNjUyNTEz.K7p5kHeOrR1zcFZNAOjR9W3ZqiFcXSoZah-j0xta6Bcg._nePUSJ8jn5N-A7uje743yB8vXme32GLpR2xP7eZdrwg.JPEG.chj42341%2F55555555.jpg&type=a340";
+            img.width='150';
+            img.height = '100';
+            img.myProperty ='abc';
+            img.setAttribute('ourProperty', 'abc');
+
+            //노드 연결
+            document.getElementById('noTextNodeDiv').appendChild(img);
+            
+
+
+
+        }
+    </script>
+
+    <h2>innerHTML</h2>
+    <button onclick="innerHTMLTEST()">실행확인</button>
+    <table id = "board">
+        <tr>
+            <th>글번호</th>
+            <th>글제목</th>
+            <th>작성자</th>
+            <th>조회수</th>
+            <th>작성일</th>
+        </tr>
+    </table>
+    <script>
+        const innerHTMLTEST = () => {
+            const board = document.getElementById('board');
+            const num = 1;
+            const title = '제목입니다';
+            const user='user91';
+            const count = 1;
+            const date = new Date();
+
+            // //버튼 누를 때마다 행 추가 (tr, td)
+            // board.innerHTML += '<tr><td>' + num + '</td>'
+            //                  + '<td>' + title + '</td>'
+            //                  + '<td>' + user + '</td>' 
+            //                  + '<td>' + count + '</td>'
+            //                  + '<td>' + date.getUTCFullYear() + "-" + (date.getMonth() + 1)+ '-' + date.getDate() + '</td>'
+            //                  + '</tr>';
+            
+            board.innerHTML = `<tr>
+                                <td> ${num} </td>
+                                <td> ${title} </td>
+                                <td> ${user} </td>
+                                <td> ${count} </td>
+                                <td> ${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}</td>
+                                </tr> `;
+
+
+        }
+    </script>
+    <h2>스타일 지정</h2>
+    <button onclick="giveStyle();">실행확인</button>
+    <div id = "styleDiv" class="area"></div>
+    <script>
+        const giveStyle = ()=> {
+            //id가 styleDiv인 요소에 배경은 검은색, 모서리 둥글기는 10px로 만들기
+            const area = document.getElementById('styleDiv');
+            area.style.backgroundColor = 'black';
+            area.style.borderRadius='100px';
+            area.style.transition = 'all 2s'; //움직임
+            
+        }
+    </script>
+    <h2>노드삭제</h2>
+    <button onclick="deleteNode();">실행확인</button>
+    <div id="delDiv" class="area"></div>
+    <script>
+        const deleteNode = () => {
+            document.getElementById('delDiv').remove();
+            
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

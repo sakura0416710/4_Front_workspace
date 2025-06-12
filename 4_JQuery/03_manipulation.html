@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"> </script>
+    <style>
+        .highlight_0{background : red;}
+        .highlight_1{background : orange;}
+        .highlight_2{background : yellow;}
+        .highlight_3{background : green;}
+        .highlight_4{background : blue;}
+    </style>
+</head>
+<body>
+    <h1>객체 조작</h1>
+    <h2>기본 설정</h2>
+    <h3>each()</h3>
+    <p>
+        배열을 관리하는 for in문과 비슷한 메소드로 객체나 배열의 요소 검사하기<br/>
+        <b>$.each(object, function(index, item) {} );</b><br/> <!--돌릴 객체가 있는 경우-->
+        <b>$(선택자).each(function (index, item) {} );</b><br/>
+        index : <br>
+        itrm : <br>
+    </p>
+    <div id="jqUrlDiv"></div>
+    <script>
+        const arr = [
+            {name :'네이버',link:'http://www.naver.com'},
+            {name : '구글', link :'http://google.com'},
+            {name : 'w3c', link :'http://www.w3c.com'},
+            {name :'w3schools',link:'httl://www.w3schools.com'}
+            
+        ];
+
+        $( () => {
+            let output = '';
+            // javascript버전 : arr을 이용하여 div에 h4를 삽입
+            // <h4><a href=url>name</a></h4>
+            // for(const i in arr){ //for in : []가 들어가 있음
+            //     output += `<h4><a href'${arr[i].link}'>${arr[i].name}</a></h4>`;
+
+            // }
+            // document.querySelector('#jqUrlDiv').innerHTML = output;
+
+            $.each(arr, (index, item) => {
+                console.log(index);
+                console.log(item);
+                output += `<h4><a href'${item.link}'>${item.name}</a></h4>`;
+            });
+            $('#jqUrlDiv').html(output); //innerHTML을 대신하는 함수 : html();
+        })
+    </script>
+
+    <div id="jqItemDiv">
+        <h4>item-0</h4>
+        <h4>item-1</h4>
+        <h4>item-2</h4>
+        <h4>item-3</h4>
+        <h4>item-4</h4>
+    </div>
+    <script>
+        $( () => {
+        //     //javascript버전 : h4에 css추가하기(className이용)
+        //    const h4s = document.querySelectorAll('#jqItemDiv>h4');
+        //     for(const i in h4s){ 
+        //         h4s[i].className = 'highlight_' + i;
+        //     }
+            //each() 버전 : 
+            $('#jsItemDiv>h4').each(function (index, item) {
+                console.log(index);
+                console.log(item);
+                //jquery형태로 변신 : $()로 감싸주기
+                $(item).addClass('highlight_' + index);
+                $(item).attr('class','highlight_'  +index); //attr: 속성 변경,수정
+                
+            } );
+        })
+    </script>
+    
+    <h3>map()</h3>
+    <p>자바 스크립트에서 제공하는 배열 요소를 검사하는 함수 = each()</p>
+    <div id="jsUrlDiv"></div>
+    <script>
+        $( () => {
+            let output = '';
+            arr.map( (element, index, array) => {
+                console.log(element);
+                console.log(index);
+                console.log(array); //내가 돌리고있는 객체가 나옴.
+                output += `<h4><a href='${element.link}'>${element.name}</a></h4>`;
+            });
+            document.querySelector('#jsUrlDiv').innerHTML = output;
+        });
+    </script>
+
+    <div id="jsItemDiv">
+        <h4>item-0</h4>
+        <h4>item-1</h4>
+        <h4>item-2</h4>
+        <h4>item-3</h4>
+        <h4>item-4</h4>
+    </div>
+    <script>
+        $( () => {
+            //javascript버전 : h4에 css추가하기(className이용)
+            //나열 연산자 : ...을 이용해서 h4s를 객체 -> 배열로 만들어주기
+            //map() : 배열 요소를 검사하는 함수이기 때문.
+            const h4s = document.querySelector('#jsItemDiv').children;
+            const h4Arr = [...h4s];
+            h4Arr.map((elem, idx, arr) => {
+                    console.log(elem);
+                    console.log(idx);
+                    console.log(arr);
+                    elem.className = `highlight_${idx}`;
+            });
+
+        });  
+    </script>
+
+    <h2>객체 생성 및 제거</h2>
+    <h3>요소 추가</h3>
+    <ul id="jqNames">
+        <li id ="nam">남나눔</li>
+        <li id ="ryu">류라라</li>
+        <li id ="mun">문미미</li>
+        <li id ="song">송성실</li>
+    </ul>
+    <button onclick="addElements1();">요소 추가</button>
+    <script>
+        const addElements1 = () => {
+        //버튼 누를 때마다 요소 추가하기 : append(To), prepend(To)
+        $('#jqNames').append('<li id="yoon">윤예의</li>');
+        $('<li id="yoon">윤예의</li>').appendTo('#jqNames');
+        $('#jqNames').prepend('<li id="kang">강건강</li>');
+        $('<li id="kang">강건강</li>').prependTo('#jqNames');
+
+        //지정한 요소의 앞/뒤에 추가하기 
+        //before/insertBefore, after/insertAfter
+        $('#song').before('<li id="park">박보배</li>');
+        $('<li id="park">박보배</li>').insertBefore('#song');
+         $('#nam').after('<li id="doe">도대남</li>');
+        $('<li id=doe">도대남</li>').insertBefore('#nam');
+
+
+        }
+    </script>
+    <ul id="jsNames">
+        <li id="doh">도대남</li>
+        <li id="yoon">윤예의</li>
+        <li id="cha">차청춘</li>
+    </ul>
+    <button onclick="addElements2();">요소 추가</button>
+    <script>
+        const addElements2 = () => {
+            //위에 했던 거 javascript버전으로 바꾸기
+            const parent = document.querySelector('#jsNames');
+            
+            // const newAppend = document.createElement('li');
+            // const newAppendText = document.createTextNode('콩쿠키');
+            // newAppend.appendChild(newAppendText); <-1개씩 추가하는거
+            // parent.appendChild(newAppend);
+
+            const newAppend2 = document.createElement('li');
+            newAppend2.innerText = '뚱뚱이';
+            const newAppend3 = document.createElement('li');
+            newAppend3.innerText = '편의점';
+
+            parent.append(newAppend2, newAppend3); //append() 여러 요소 추가가능
+
+            const newPrepend1 = document.createElement('li');
+            newPrepend1.innerText = '남나눔';
+            parent.prepend(newPrepend1);
+
+            const standard = document.querySelector('#yoon');
+            const newBefore = document.createElement('li');
+            const newBeforeText = document.createTextNode('송성실');
+            newBefore.appendChild(newBeforeText);
+            parent.insertBefore(newBefore, standard); //추가노드, 기준노드 적어주면 송성실 => 윤예의 순서
+
+        }
+    </script>
+
+    <h3>객체 복제</h3>
+    <div id="cloneDiv"></div>
+    <script>
+        $( () => {
+            $('#cloneDiv').html($('#jqUrlDiv').clone());//클론한거를 #cloneDiv html에 넣겠다
+        })
+    </script>
+
+    <hr/>
+
+    <h3>요소 삭제</h3>
+    <div id="colorDiv" class="colorDiv">
+        <ul id="colorUl">
+            <li>pink</li>
+            <li>skyblie</li>
+            <li>yellow</li>
+            <li>yellowgreen</li>
+        </ul>
+    </div>
+    <button onclick="return1();">되돌리기1</button>
+    
+     <div id="colorDiv2" class="colorDiv">
+        <ul id="colorUl2">
+            <li>pink</li>
+            <li>skyblie</li>
+            <li>yellow</li>
+            <li>yellowgreen</li>
+        </ul>
+    </div>
+    <button onclick="return2();">되돌리기2</button>
+
+     <div id="colorDiv3" class="colorDiv">
+        <ul id="colorUl3">
+            <li>pink</li>
+            <li>skyblie</li>
+            <li>yellow</li>
+            <li>yellowgreen</li>
+        </ul>
+    </div>
+    <button onclick="return3();">되돌리기3</button>
+
+    <script>
+        $( () => {
+            //jquery형식
+            //각 li에 마우스를 올리면 (mouseover)글자는 하얗게, 배경은 내용대로
+            //li에 마우스가 벗어나면 (mouseout)글자는 까맣게, 배경은 하얗게
+            $('.colorDiv').find('li').mouseover( function () {
+                $(this).css({'background' : $(this).text(), 'color' : 'white'});               
+            }).mouseout( function() {
+                $(this).css({'background' : 'white', 'color' : 'black'});   
+
+
+            });
+
+            removeVal = $('#colorDiv').remove(); //화면만 되돌리기 (이벤트는 안 돌아옴)
+            detachVal = $('#colorDiv2').detach(); //이벤트까지 모두 되돌리기
+            emptyVal = $('#colorDiv3').empty(); //되돌리기 불가
+            
+            console.log(removeVal);
+            console.log(detachVal);
+            console.log(emptyVal);
+        
+        
+        });
+        //반환값 받은 걸 다시 넣어보기
+        const return1 = () => {
+            $('#colorDiv').append(removeVal);
+        }
+        const return2 = () => {
+            $('#colorDiv2').append(detachVal);
+        }
+        const return3 = () => {
+            $('#colorDiv3').append(emptyVal);
+        }
+
+    </script>
+
+
+
+
+
+
+
+
+</body>
+</html>
